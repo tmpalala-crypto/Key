@@ -13,10 +13,10 @@ jobs:
         with:
           flutter-version: '3.19.6'
           channel: 'stable'
-      - run: flutter create . --platforms=android
-      - run: flutter pub get
-      - run: flutter build apk --release
+      - run: cd Key && flutter create . --project-name key --platforms=android
+      - run: cd Key && flutter pub get
+      - run: cd Key && flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
           name: APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: Key/build/app/outputs/flutter-apk/app-release.apk
