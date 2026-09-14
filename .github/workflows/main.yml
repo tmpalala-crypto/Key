@@ -13,10 +13,8 @@ jobs:
         with:
           flutter-version: '3.19.6'
           channel: 'stable'
-      - run: |
-          cd Key
-          flutter pub get
-          flutter build apk --release
+      - run: flutter pub get
+      - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
           name: APK
