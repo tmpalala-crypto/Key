@@ -1,4 +1,3 @@
-
 name: Build APK
 on: push
 jobs:
@@ -13,13 +12,22 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.6'
-      - name: Build with permissions
-        run: |
+      - run: |
           flutter create . --project-name key --platforms=android
           sed -i 's/<application/<uses-permission android:name="android.permission.CAMERA" \/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" \/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" \/>\n    <uses-permission android:name="android.permission.RECORD_AUDIO" \/>\n    <application/' android/app/src/main/AndroidManifest.xml
+          mkdir -p assets/icon
+          cp icon.png assets/icon/icon.png || cp ../icon.png assets/icon/icon.png || true
+          echo 'dev_dependencies:
+            flutter_launcher_icons: ^0.14.0
+          flutter_launcher_icons:
+            android: "launcher_icon"
+            ios: false
+            image_path: "assets/icon/icon.png"
+            min_sdk_android: 21' >> pubspec.yaml
           flutter pub get
+          flutter pub run flutter_launcher_icons || true
           flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
-          name: APK-FIXED-PERMISSIONS
+          name: ScanSafeAfrica-APK-LOGO
           path: build/app/outputs/flutter-apk/app-release.apk
