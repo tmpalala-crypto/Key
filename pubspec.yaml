@@ -1,5 +1,5 @@
-name: scan_safe
-description: ScanSafeAfrica v3.2.1 Anti-Corruption ACTIVE
+name: scansafe_africa
+description: ScanSafeAfrica Anti-Corruption Official v3.2.1
 publish_to: 'none'
 version: 3.2.1+1
 environment:
@@ -9,10 +9,6 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   crypto: ^3.0.3
-  geolocator: ^10.1.0
-  local_auth: ^2.1.6
-  signature: ^5.5.0
-  path_provider: ^2.1.2
 flutter:
   uses-material-design: true
   assets:
