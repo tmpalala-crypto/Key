@@ -1,1 +1,1 @@
-#scansafe
+#scansafeafrica
